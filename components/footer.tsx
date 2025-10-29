@@ -352,7 +352,7 @@ export function Footer() {
         .footer-link:focus,
         .footer-link:focus *,
         .footer-link:focus span {
-          color: #000 !important;
+          color: #fff !important;
           text-decoration: none !important;
         }
 
@@ -375,7 +375,7 @@ export function Footer() {
         footer .footer-link,
         footer .footer-link *,
         footer .footer-link span {
-          color: #000 !important;
+          color: #fff !important;
           text-decoration: none !important;
         }
 
@@ -392,9 +392,9 @@ export function Footer() {
         .force-black-text:active,
         .force-black-text:active *,
         .force-black-text:active span {
-          color: #000 !important;
-          fill: #000 !important;
-          stroke: #000 !important;
+          color: #fff !important;
+          fill: #fff !important;
+          stroke: #fff !important;
           text-decoration: none !important;
         }
       `}</style>

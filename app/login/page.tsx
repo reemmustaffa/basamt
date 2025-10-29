@@ -90,7 +90,7 @@ export default function LoginPage() {
         .force-black-text *,
         .force-black-text span,
         .force-black-text a {
-          color: #000 !important;
+          color: #fff !important;
         }
       `}</style>
       {/* Animated Background */}
@@ -206,7 +206,7 @@ export default function LoginPage() {
                   <Button
                     type="submit"
                     disabled={loading}
-                    className="w-full h-12 bg-gradient-to-r from-purple-600  hover:from-purple-700 hover:to-pink-700 font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none arabic-text group [&>*]:!text-black [&>*>*]:!text-black"
+                    className="w-full h-12 bg-gradient-to-r from-purple-600  hover:from-purple-700 hover:to-pink-700 font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none arabic-text group "
                   >
                     {loading ? (
                       <div className="flex items-center justify-center space-x-2">

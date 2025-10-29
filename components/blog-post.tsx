@@ -70,25 +70,25 @@ export function BlogPost({ post }: BlogPostProps) {
     }
   };
 
-  // دالة الحفظ
-  const handleToggleSave = () => {
-    const saved = JSON.parse(localStorage.getItem("savedPosts") || "[]");
-    const exists = saved.some((item: any) => item.title === post.title);
+  // // دالة الحفظ
+  // const handleToggleSave = () => {
+  //   const saved = JSON.parse(localStorage.getItem("savedPosts") || "[]");
+  //   const exists = saved.some((item: any) => item.title === post.title);
 
-    if (exists) {
-      // ❌ إزالة من المحفوظات
-      const updated = saved.filter((item: any) => item.title !== post.title);
-      localStorage.setItem("savedPosts", JSON.stringify(updated));
-      setIsSaved(false);
-      toast("🗑️ تم إزالة المقال من المفضلة", { position: "top-center" });
-    } else {
-      // ✅ إضافة إلى المحفوظات
-      saved.push(post);
-      localStorage.setItem("savedPosts", JSON.stringify(saved));
-      setIsSaved(true);
-      toast.success(" تم حفظ المقال في المفضلة", { position: "top-center" });
-    }
-  };
+  //   if (exists) {
+  //     // ❌ إزالة من المحفوظات
+  //     const updated = saved.filter((item: any) => item.title !== post.title);
+  //     localStorage.setItem("savedPosts", JSON.stringify(updated));
+  //     setIsSaved(false);
+  //     toast("🗑️ تم إزالة المقال من المفضلة", { position: "top-center" });
+  //   } else {
+  //     // ✅ إضافة إلى المحفوظات
+  //     saved.push(post);
+  //     localStorage.setItem("savedPosts", JSON.stringify(saved));
+  //     setIsSaved(true);
+  //     toast.success(" تم حفظ المقال في المفضلة", { position: "top-center" });
+  //   }
+  // };
 
   // 🕊️ مشاركة على تويتر
   const handleShareTwitter = () => {
@@ -196,7 +196,7 @@ export function BlogPost({ post }: BlogPostProps) {
                   <Share2 className="h-4 w-4 ml-2" />
                   <span className="arabic-text">مشاركة</span>
                 </Button>
-                <Button
+                {/* <Button
                   variant="outline"
                   size="sm"
                   onClick={handleToggleSave}
@@ -213,7 +213,7 @@ export function BlogPost({ post }: BlogPostProps) {
                     {" "}
                     {isSaved ? "تم الحفظ" : "حفظ"}
                   </span>
-                </Button>
+                </Button> */}
               </div>
             </div>
           </div>
@@ -305,7 +305,7 @@ export function BlogPost({ post }: BlogPostProps) {
                 <Share2 className="h-4 w-4 ml-2" />
                 <span className="arabic-text">لينكدإن</span>
               </Button>
-              <Button
+              {/* <Button
                 size="sm"
                 variant="outline"
                 onClick={handleToggleSave}
@@ -321,7 +321,7 @@ export function BlogPost({ post }: BlogPostProps) {
                 <span className="arabic-text">
                   {isSaved ? "تم الحفظ" : "حفظ"}
                 </span>
-              </Button>
+              </Button> */}
             </div>
           </div>
 

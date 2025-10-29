@@ -1,86 +1,149 @@
-"use client"
+"use client";
 
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { Card, CardContent } from "@/components/ui/card"
-import { CheckCircle, ArrowRight, Sparkles, Clock, Shield, MessageCircle, AlertCircle } from "lucide-react"
-import { useEffect, useState } from "react"
-import { fetchPublicPageContent } from "@/lib/api"
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  CheckCircle,
+  ArrowRight,
+  Sparkles,
+  Clock,
+  Shield,
+  MessageCircle,
+  AlertCircle,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { fetchPublicPageContent } from "@/lib/api";
 
 export default function HowToOrderPage() {
-  const [content, setContent] = useState<any | null>(null)
-  const [loading, setLoading] = useState<boolean>(true)
+  const [content, setContent] = useState<any | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   // Fallback content mirrors the original static UI
   const fallback = {
     sections: [
       {
-        id: 'hero',
+        id: "hero",
         data: {
-          badge: { ar: 'دليل الطلب الشامل' },
-          title: { ar: 'كيف تطلب خدمتك؟' },
-          description: { ar: 'في "بصمة تصميم"، نجعل طلب خدمتك سهلاً وسريعاً بخطوات واضحة ومباشرة' },
-        }
+          badge: { ar: "دليل الطلب الشامل" },
+          title: { ar: "كيف تطلب خدمتك؟" },
+          description: {
+            ar: 'في "بصمة تصميم"، نجعل طلب خدمتك سهلاً وسريعاً بخطوات واضحة ومباشرة',
+          },
+        },
       },
       {
-        id: 'steps',
+        id: "steps",
         data: {
-          heading: { ar: 'خطوات بسيطة للحصول على خدمتك' },
+          heading: { ar: "خطوات بسيطة للحصول على خدمتك" },
           items: [
-            { order: 1, title: { ar: 'اختر خدمتك' }, description: { ar: 'تصفح قسم الخدمات واختر الخدمة التي تحتاجها من مجموعة خدماتنا المتنوعة' }, theme: 'primary' },
-            { order: 2, title: { ar: 'أكمل الدفع' }, description: { ar: 'ادفع بأمان عبر PayPal أو وسائل الدفع المتاحة بخطوات سريعة ومحمية' }, theme: 'emerald' },
-            { order: 3, title: { ar: 'ابدأ التنفيذ' }, description: { ar: 'تواصل معنا عبر واتساب لتوضيح تفاصيل طلبك ونبدأ التنفيذ فوراً' }, theme: 'amber' },
+            {
+              order: 1,
+              title: { ar: "اختر خدمتك" },
+              description: {
+                ar: "تصفح قسم الخدمات واختر الخدمة التي تحتاجها من مجموعة خدماتنا المتنوعة",
+              },
+              theme: "primary",
+            },
+            {
+              order: 2,
+              title: { ar: "أكمل الدفع" },
+              description: {
+                ar: "ادفع بأمان عبر PayPal أو وسائل الدفع المتاحة بخطوات سريعة ومحمية",
+              },
+              theme: "emerald",
+            },
+            {
+              order: 3,
+              title: { ar: "ابدأ التنفيذ" },
+              description: {
+                ar: "تواصل معنا عبر واتساب لتوضيح تفاصيل طلبك ونبدأ التنفيذ فوراً",
+              },
+              theme: "amber",
+            },
           ],
           processHighlights: [
-            { text: { ar: 'لا حاجة لنماذج معقدة' } },
-            { text: { ar: 'تواصل مباشر مع الفريق' } },
-            { text: { ar: 'بداية فورية للتنفيذ' } },
-          ]
-        }
+            { text: { ar: "لا حاجة لنماذج معقدة" } },
+            { text: { ar: "تواصل مباشر مع الفريق" } },
+            { text: { ar: "بداية فورية للتنفيذ" } },
+          ],
+        },
       },
       {
-        id: 'notes',
+        id: "notes",
         data: {
-          heading: { ar: 'ملاحظات مهمة لضمان أفضل خدمة' },
+          heading: { ar: "ملاحظات مهمة لضمان أفضل خدمة" },
           items: [
-            { title: { ar: 'التحضير المسبق' }, description: { ar: 'يُرجى تجهيز وصف واضح ومفصل لطلبك قبل بدء المحادثة لضمان فهم متطلباتك بدقة' }, theme: 'amber', icon: 'clock' },
-            { title: { ar: 'الأسعار والتعديلات' }, description: { ar: 'الأسعار ثابتة لكل خدمة، والتعديلات محدودة حسب نوع الخدمة المطلوبة' }, theme: 'blue', icon: 'shield' },
-            { title: { ar: 'سياسة الإلغاء' }, description: { ar: 'جميع الخدمات غير قابلة للإلغاء أو الاسترداد بعد إتمام عملية الدفع' }, theme: 'red', icon: 'alert' },
-            { title: { ar: 'التسليم الرقمي' }, description: { ar: 'خدمة "قالب السيرة الذاتية الجاهز" تُرسل مباشرة عبر البريد الإلكتروني ولا تتطلب تواصل عبر واتساب' }, theme: 'emerald', icon: 'message' },
-          ]
-        }
+            {
+              title: { ar: "التحضير المسبق" },
+              description: {
+                ar: "يُرجى تجهيز وصف واضح ومفصل لطلبك قبل بدء المحادثة لضمان فهم متطلباتك بدقة",
+              },
+              theme: "amber",
+              icon: "clock",
+            },
+            {
+              title: { ar: "الأسعار والتعديلات" },
+              description: {
+                ar: "الأسعار ثابتة لكل خدمة، والتعديلات محدودة حسب نوع الخدمة المطلوبة",
+              },
+              theme: "blue",
+              icon: "shield",
+            },
+            {
+              title: { ar: "سياسة الإلغاء" },
+              description: {
+                ar: "جميع الخدمات غير قابلة للإلغاء أو الاسترداد بعد إتمام عملية الدفع",
+              },
+              theme: "red",
+              icon: "alert",
+            },
+            {
+              title: { ar: "التسليم الرقمي" },
+              description: {
+                ar: 'خدمة "قالب السيرة الذاتية الجاهز" تُرسل مباشرة عبر البريد الإلكتروني ولا تتطلب تواصل عبر واتساب',
+              },
+              theme: "emerald",
+              icon: "message",
+            },
+          ],
+        },
       },
       {
-        id: 'cta',
+        id: "cta",
         data: {
-          title: { ar: 'جاهز لبدء مشروعك؟' },
-          description: { ar: 'اختر خدمتك الآن وابدأ رحلة إبداعية مع فريق بصمة تصميم' },
-          button: { text: { ar: 'تصفح الخدمات' }, link: '/services' }
-        }
-      }
-    ]
-  }
+          title: { ar: "جاهز لبدء مشروعك؟" },
+          description: {
+            ar: "اختر خدمتك الآن وابدأ رحلة إبداعية مع فريق بصمة تصميم",
+          },
+          button: { text: { ar: "تصفح الخدمات" }, link: "/services" },
+        },
+      },
+    ],
+  };
 
   useEffect(() => {
-    let mounted = true
-    ;(async () => {
+    let mounted = true;
+    (async () => {
       try {
-        const data = await fetchPublicPageContent('howToOrder')
+        const data = await fetchPublicPageContent("howToOrder");
         // Use fallback only when API returns null/undefined; if data exists but fields are empty, respect emptiness
-        if (mounted) setContent((data ?? null) ? data : fallback)
+        if (mounted) setContent(data ?? null ? data : fallback);
       } catch (e) {
-        if (mounted) setContent(fallback)
+        if (mounted) setContent(fallback);
       } finally {
-        if (mounted) setLoading(false)
+        if (mounted) setLoading(false);
       }
-    })()
-    return () => { mounted = false }
-  }, [])
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
-  const hero = content?.sections?.find((s: any) => s.id === 'hero')?.data
-  const steps = content?.sections?.find((s: any) => s.id === 'steps')?.data
-  const notes = content?.sections?.find((s: any) => s.id === 'notes')?.data
-  const cta = content?.sections?.find((s: any) => s.id === 'cta')?.data
+  const hero = content?.sections?.find((s: any) => s.id === "hero")?.data;
+  const steps = content?.sections?.find((s: any) => s.id === "steps")?.data;
+  const notes = content?.sections?.find((s: any) => s.id === "notes")?.data;
+  const cta = content?.sections?.find((s: any) => s.id === "cta")?.data;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-violet-50 via-white to-purple-50/30">
@@ -112,7 +175,7 @@ export default function HowToOrderPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-center text-primary arabic-text mb-12">
               {steps?.heading?.ar}
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               {/* Step 1 */}
               <Card className="relative overflow-hidden border-violet-200/70 hover:shadow-lg transition-all duration-300 group">
@@ -120,8 +183,12 @@ export default function HowToOrderPage() {
                   <div className="w-16 h-16 bg-gradient-to-br from-primary to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                     <span className="text-2xl font-bold text-white">1</span>
                   </div>
-                  <h3 className="text-xl font-bold arabic-text mb-4 text-primary">{steps?.items?.[0]?.title?.ar}</h3>
-                  <p className="text-muted-foreground arabic-text leading-relaxed">{steps?.items?.[0]?.description?.ar}</p>
+                  <h3 className="text-xl font-bold arabic-text mb-4 text-primary">
+                    {steps?.items?.[0]?.title?.ar}
+                  </h3>
+                  <p className="text-muted-foreground arabic-text leading-relaxed">
+                    {steps?.items?.[0]?.description?.ar}
+                  </p>
                 </CardContent>
               </Card>
 
@@ -131,8 +198,12 @@ export default function HowToOrderPage() {
                   <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                     <span className="text-2xl font-bold text-white">2</span>
                   </div>
-                  <h3 className="text-xl font-bold arabic-text mb-4 text-emerald-600">{steps?.items?.[1]?.title?.ar}</h3>
-                  <p className="text-muted-foreground arabic-text leading-relaxed">{steps?.items?.[1]?.description?.ar}</p>
+                  <h3 className="text-xl font-bold arabic-text mb-4 text-emerald-600">
+                    {steps?.items?.[1]?.title?.ar}
+                  </h3>
+                  <p className="text-muted-foreground arabic-text leading-relaxed">
+                    {steps?.items?.[1]?.description?.ar}
+                  </p>
                 </CardContent>
               </Card>
 
@@ -142,8 +213,12 @@ export default function HowToOrderPage() {
                   <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                     <span className="text-2xl font-bold text-white">3</span>
                   </div>
-                  <h3 className="text-xl font-bold arabic-text mb-4 text-amber-600">{steps?.items?.[2]?.title?.ar}</h3>
-                  <p className="text-muted-foreground arabic-text leading-relaxed">{steps?.items?.[2]?.description?.ar}</p>
+                  <h3 className="text-xl font-bold arabic-text mb-4 text-amber-600">
+                    {steps?.items?.[2]?.title?.ar}
+                  </h3>
+                  <p className="text-muted-foreground arabic-text leading-relaxed">
+                    {steps?.items?.[2]?.description?.ar}
+                  </p>
                 </CardContent>
               </Card>
             </div>
@@ -157,17 +232,23 @@ export default function HowToOrderPage() {
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                   <div className="flex items-center gap-3 text-primary">
                     <CheckCircle className="h-6 w-6 text-emerald-500" />
-                    <span className="arabic-text font-medium">{steps?.processHighlights?.[0]?.text?.ar}</span>
+                    <span className="arabic-text font-medium">
+                      {steps?.processHighlights?.[0]?.text?.ar}
+                    </span>
                   </div>
                   <ArrowRight className="h-6 w-6 text-muted-foreground rotate-90 md:rotate-0" />
                   <div className="flex items-center gap-3 text-primary">
                     <CheckCircle className="h-6 w-6 text-emerald-500" />
-                    <span className="arabic-text font-medium">{steps?.processHighlights?.[1]?.text?.ar}</span>
+                    <span className="arabic-text font-medium">
+                      {steps?.processHighlights?.[1]?.text?.ar}
+                    </span>
                   </div>
                   <ArrowRight className="h-6 w-6 text-muted-foreground rotate-90 md:rotate-0" />
                   <div className="flex items-center gap-3 text-primary">
                     <CheckCircle className="h-6 w-6 text-emerald-500" />
-                    <span className="arabic-text font-medium">{steps?.processHighlights?.[2]?.text?.ar}</span>
+                    <span className="arabic-text font-medium">
+                      {steps?.processHighlights?.[2]?.text?.ar}
+                    </span>
                   </div>
                 </div>
               </CardContent>
@@ -183,7 +264,7 @@ export default function HowToOrderPage() {
             <h2 className="text-3xl font-bold text-center arabic-text mb-12 text-primary">
               {notes?.heading?.ar}
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card className="border-amber-200/70 bg-amber-50/50">
                 <CardContent className="p-6">
@@ -192,8 +273,12 @@ export default function HowToOrderPage() {
                       <Clock className="h-5 w-5 text-amber-600" />
                     </div>
                     <div>
-                      <h3 className="font-bold arabic-text mb-2 text-amber-800">{notes?.items?.[0]?.title?.ar}</h3>
-                      <p className="text-amber-700 arabic-text text-sm leading-relaxed">{notes?.items?.[0]?.description?.ar}</p>
+                      <h3 className="font-bold arabic-text mb-2 text-amber-800">
+                        {notes?.items?.[0]?.title?.ar}
+                      </h3>
+                      <p className="text-amber-700 arabic-text text-sm leading-relaxed">
+                        {notes?.items?.[0]?.description?.ar}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -206,8 +291,12 @@ export default function HowToOrderPage() {
                       <Shield className="h-5 w-5 text-blue-600" />
                     </div>
                     <div>
-                      <h3 className="font-bold arabic-text mb-2 text-blue-800">{notes?.items?.[1]?.title?.ar}</h3>
-                      <p className="text-blue-700 arabic-text text-sm leading-relaxed">{notes?.items?.[1]?.description?.ar}</p>
+                      <h3 className="font-bold arabic-text mb-2 text-blue-800">
+                        {notes?.items?.[1]?.title?.ar}
+                      </h3>
+                      <p className="text-blue-700 arabic-text text-sm leading-relaxed">
+                        {notes?.items?.[1]?.description?.ar}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -220,8 +309,12 @@ export default function HowToOrderPage() {
                       <AlertCircle className="h-5 w-5 text-red-600" />
                     </div>
                     <div>
-                      <h3 className="font-bold arabic-text mb-2 text-red-800">{notes?.items?.[2]?.title?.ar}</h3>
-                      <p className="text-red-700 arabic-text text-sm leading-relaxed">{notes?.items?.[2]?.description?.ar}</p>
+                      <h3 className="font-bold arabic-text mb-2 text-red-800">
+                        {notes?.items?.[2]?.title?.ar}
+                      </h3>
+                      <p className="text-red-700 arabic-text text-sm leading-relaxed">
+                        {notes?.items?.[2]?.description?.ar}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -234,8 +327,12 @@ export default function HowToOrderPage() {
                       <MessageCircle className="h-5 w-5 text-emerald-600" />
                     </div>
                     <div>
-                      <h3 className="font-bold arabic-text mb-2 text-emerald-800">{notes?.items?.[3]?.title?.ar}</h3>
-                      <p className="text-emerald-700 arabic-text text-sm leading-relaxed">{notes?.items?.[3]?.description?.ar}</p>
+                      <h3 className="font-bold arabic-text mb-2 text-emerald-800">
+                        {notes?.items?.[3]?.title?.ar}
+                      </h3>
+                      <p className="text-emerald-700 arabic-text text-sm leading-relaxed">
+                        {notes?.items?.[3]?.description?.ar}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -255,11 +352,15 @@ export default function HowToOrderPage() {
                 <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Sparkles className="h-10 w-10 text-white" />
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold arabic-text mb-4">{cta?.title?.ar}</h2>
-                <p className="text-xl arabic-text mb-8 text-white/90">{cta?.description?.ar}</p>
+                <h2 className="text-3xl md:text-4xl font-bold arabic-text mb-4">
+                  {cta?.title?.ar}
+                </h2>
+                <p className="text-xl arabic-text mb-8 text-white/90">
+                  {cta?.description?.ar}
+                </p>
                 <a
                   href={cta?.button?.link}
-                  className="inline-flex items-center justify-center rounded-lg bg-white text-primary px-8 py-4 text-lg font-bold arabic-text hover:bg-white/90 transition-colors duration-300 shadow-lg"
+                  className="inline-flex items-center justify-center rounded-lg bg-white  px-8 py-4 text-lg font-bold arabic-text hover:bg-white/90 transition-colors duration-300 shadow-lg !text-white"
                 >
                   {cta?.button?.text?.ar}
                   <ArrowRight className="mr-2 h-5 w-5" />
@@ -272,6 +373,5 @@ export default function HowToOrderPage() {
 
       <Footer />
     </div>
-  )
+  );
 }
-

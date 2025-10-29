@@ -95,7 +95,7 @@ export function FoundationalStatement() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Button
               size="lg"
-              className="bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary font-semibold text-lg px-8 py-4 arabic-text group transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl hover:shadow-primary/25 "
+              className="bg-gradient-to-r from-primary to-accent !text-white hover:from-accent hover:to-primary font-semibold text-lg px-8 py-4 arabic-text group transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl hover:shadow-primary/25 "
               asChild
             >
               <Link

@@ -41,7 +41,7 @@ const ContactContent = () => {
                 d.headerSubtitle ||
                 "نحن نؤمن أن التواصل الواضح هو أساس الخدمة الاحترافية. جميع طلبات الخدمات والتفاصيل تُدار حصريًا عبر القنوات التالية:",
               whatsappLink: (d.whatsappLink ?? "").toString().trim(),
-              email: d.email || "contact@basmadesign.com",
+              email: d.email || "basmadesign0@gmail.com",
               workingHoursText:
                 d.workingHoursText ||
                 "يوميًا من الساعة 10 صباحًا حتى 10 مساءً – بتوقيت السعودية",
@@ -61,7 +61,7 @@ const ContactContent = () => {
               whatsappLink: (d.contactInfo?.whatsappLink ?? "")
                 .toString()
                 .trim(),
-              email: d.contactInfo?.email || "contact@basmadesign.com",
+              email: d.contactInfo?.email || "basmadesign0@gmail.com",
               workingHoursText:
                 d.contactInfo?.workingHours?.ar ||
                 "يوميًا من الساعة 10 صباحًا حتى 10 مساءً – بتوقيت السعودية",
@@ -93,7 +93,7 @@ const ContactContent = () => {
             headerSubtitle:
               "نحن نؤمن أن التواصل الواضح هو أساس الخدمة الاحترافية. جميع طلبات الخدمات والتفاصيل تُدار حصريًا عبر القنوات التالية:",
             whatsappLink: "",
-            email: "contact@basmadesign.com",
+            email: "basmadesign0@gmail.com",
             workingHoursText:
               "يوميًا من الساعة 10 صباحًا حتى 10 مساءً – بتوقيت السعودية",
             notes: [
