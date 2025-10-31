@@ -154,7 +154,7 @@ export default function RootLayout({
                 "Basmat Design",
                 "بصمة تصميم السعودية",
                 "Basmat Design Saudi Arabia",
-                "شركة بصمة تصميم",
+                "متجر بصمة تصميم",
                 "مؤسسة بصمة تصميم",
               ],
               url: "https://basmatdesign.cloud",
@@ -171,7 +171,7 @@ export default function RootLayout({
               slogan: "نصمم، نكتب، ونبني لك هوية تترك أثرًا",
               keywords: [
                 "بصمة تصميم",
-                "شركة تصميم",
+                "متجر تصميم",
                 "تصميم شعارات",
                 "هوية بصرية",
                 "تصميم جرافيك",
